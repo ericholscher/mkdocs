@@ -213,8 +213,9 @@ def _generate_site_navigation(pages_config, url_context, use_directory_urls=True
             filename = path.split('/')[0]
             title = filename_to_title(filename)
         if child_title is None and '/' in path:
-            filename = path.split('/')[1]
-            child_title = filename_to_title(filename)
+            child_title = "%s " % filename_to_title(path.split('/')[1])
+            for segment in path.split('/')[2:]:
+                child_title += "> %s " % filename_to_title(segment)
 
         url = utils.get_url_path(path, use_directory_urls)
 
