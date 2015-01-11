@@ -141,8 +141,10 @@ def build_404(config, env, site_navigation):
         template = env.get_template('404.html')
     except TemplateNotFound:
         return
-
+    
     global_context = get_global_context(site_navigation, config)
+
+    global_context['current_page'] = None
 
     output_content = template.render(global_context)
     output_path = os.path.join(config['site_dir'], '404.html')
